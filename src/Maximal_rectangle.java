@@ -20,7 +20,7 @@ public class Maximal_rectangle {
         int c = matrix[0].length;
         //Step - 1 Make a 2-D top matrix - it stores the indexes of the top smaller element xD ykr
         int[][] top = new int[r][c];
-        Stack<Integer> st = new Stack<Integer>();
+        Stack<Integer> st = new Stack<>();
         for (int i = 0; i < c; i++) {
             for (int j = 0; j < r; j++) {
                 while(!st.isEmpty() && matrix[st.peek()][i]>=matrix[j][i]){
