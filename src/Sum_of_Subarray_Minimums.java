@@ -2,38 +2,19 @@ import java.util.Stack;
 
 public class Sum_of_Subarray_Minimums {
     public static void main(String[] args) {
-        int[] arr = {1,2,3};
+        int[] arr = {1,3,3};
         System.out.println(sumSubarrayMins(arr));
     }
     //Stack solution
     //TC - O(N)
     //SC - O(N)
     public static int sumSubarrayMins(int[] arr){
-         int n = arr.length;
-         //Left array represents the previous smaller element
-         int[] left = new int[n];
-         //Right array represents the next smaller element
-         int[] right = new int[n];
-         Stack<Integer> st = new Stack<>();
-
-        for (int i = n-1; i >=0 ; i--) {
-            //Removing the elements smaller than current element from the stack
-            while(!st.isEmpty() && arr[st.peek()] >= arr[i]){
-                st.pop();
-            }
-            //If stack is empty, there is no smaller element to the right, so set right[i] to the length of the array.
-            //Otherwise, set it to the next smaller element's index
-            if(st.isEmpty()){
-                right[i] = n;
-            }else{
-                 right[i] = st.peek();
-            }
-
-            st.push(i);
-        }
-
-        //Clear the stack to reuse it in finding previous smaller elements
-        st.clear();
+        int n = arr.length;
+        //Left array represents the previous smaller element
+        int[] left = new int[n];
+        //Right array represents the next smaller element
+        int[] right = new int[n];
+        Stack<Integer> st = new Stack<>();
 
         for (int i = 0; i <n ; i++) {
             //Pop elements from stack until element smaller than current ele is found
@@ -46,6 +27,25 @@ public class Sum_of_Subarray_Minimums {
                 left[i] = -1;
             }else{
                 left[i] = st.peek();
+            }
+
+            st.push(i);
+        }
+
+        //Clear the stack to reuse it in finding previous smaller elements
+        st.clear();
+
+        for (int i = n-1; i >=0 ; i--) {
+            //Removing the elements smaller than current element from the stack
+            while(!st.isEmpty() && arr[st.peek()] >= arr[i]){
+                st.pop();
+            }
+            //If stack is empty, there is no smaller element to the right, so set right[i] to the length of the array.
+            //Otherwise, set it to the next smaller element's index
+            if(st.isEmpty()){
+                right[i] = n;
+            }else{
+                right[i] = st.peek();
             }
 
             st.push(i);
