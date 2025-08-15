@@ -4,19 +4,20 @@ import java.util.Stack;
 
 public class Next_smaller {
     public static void main(String[] args) {
-        int arr[] = {11, 13, 21, 3,12};
+        int arr[] = {11, 13, 1, 3,12};
         System.out.println(Arrays.toString(next(arr)));
     }
 
-    //Ny stack
+    //By stack
     public static int[] next(int[] arr){
         int[] ans = new int[arr.length];
         Stack<Integer> st = new Stack<>();
         HashMap<Integer,Integer> hs = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
             while(!st.isEmpty() && arr[i]<st.peek()){
-                hs.put(st.pop(),i);
+                hs.put(st.pop(),arr[i]);
             }
+            System.out.println(hs);
             st.push(arr[i]);
         }
         for(int i = 0; i<arr.length; i++){
