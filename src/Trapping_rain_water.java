@@ -30,13 +30,14 @@ public class Trapping_rain_water {
 
     //so many traps xD - rattrap or wot?
     //finally solution - without stack
-    //Optimum solution
-    //TC - 0()
-    //SC - O()
+    //Optimum solution using array
+    //TC - O(n)
+    //SC - O(1)
     public static int trap3(int[] height) {
         int n = height.length;
 
         // Compute left max array
+        // lmax - max number to the left including the current element
         int[] lmax = new int[n];
         lmax[0] = height[0];
         for (int i = 1; i < n; i++) {
@@ -44,6 +45,7 @@ public class Trapping_rain_water {
         }
 
         // Compute right max array
+        // r max - max number to the right including the current element
         int[] rmax = new int[n];
         rmax[n-1] = height[n-1];
         for (int i = n - 2; i >= 0; i--) {
@@ -58,6 +60,7 @@ public class Trapping_rain_water {
         return ans;
     }
 
+    //Try - 2
     //no sense at all sed :(
     public static int trap2(int[] height) {
         int a = 0; int b = height.length-1;
@@ -82,6 +85,7 @@ public class Trapping_rain_water {
         return sum;
     }
 
+    //Try - 1
     //:( meme brute force but cant get it right
     public static int trap1(int[] height) {
         int a = 0; int b = height.length-1;
