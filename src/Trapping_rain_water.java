@@ -8,17 +8,22 @@ public class Trapping_rain_water {
     }
 
     //Stack approach
+    //TC - O(N)
+    //SC - O(N)
     public static int trap(int[] height) {
         int n = height.length;
         int ans = 0;
         Stack<Integer> st = new Stack<>();
         for(int right = 0; right <n; right++){
+            //when top of the stack is smaller than the current element then,
+            //allot left, mid, right
+            //calculate dist, minHeight and ans
             while(!st.isEmpty() && height[st.peek()]<height[right]){
-                int mid = st.pop();
+                int mid = st.pop(); //smaller element
                 if(st.isEmpty()){
                     break;
                 }
-                int left = st.peek();
+                int left = st.peek(); //prev greater and height[right] = next greater
                 int minHeight = Math.min(height[right]-height[mid],height[left]-height[mid]);
                 int dist = right-left-1;
                 ans += minHeight*dist;
