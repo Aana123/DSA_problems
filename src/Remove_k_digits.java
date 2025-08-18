@@ -2,8 +2,8 @@ import java.util.Stack;
 
 public class Remove_k_digits {
     public static void main(String[] args) {
-        String num = "1432219";
-        int k = 3;
+        String num = "0120200";
+        int k = 2;
         System.out.println(removeKdigits(num,k));
     }
 
@@ -22,14 +22,10 @@ public class Remove_k_digits {
             }
             st.push(i);
         }
-        //if k>0, start popping elements from the stack until it is
+        //if k>0, start popping elements from the stack until k is equal to 0
         while(!st.isEmpty() && k>0){
             st.pop();
             k--;
-        }
-        //if the stack is empty then, return 0
-        if(st.isEmpty()){
-            return "0";
         }
         //transferring elements from stack to string
         StringBuilder sb = new StringBuilder();
@@ -38,24 +34,14 @@ public class Remove_k_digits {
         }
         //LIFO
         sb.reverse();
-        //if all values of string == 0 then return just one zero
-        int i = 0;
-        while(i<sb.length()){
-            if(sb.charAt(i)!='0'){
-                break;
-            }
-            else{
-                i++;
-            }
-        }
-        if(i==sb.length()){
-            return "0";
-        }
         //to remove leading zeros
-        while(sb.charAt(0)=='0'){
+        while(!sb.isEmpty() && sb.charAt(0)=='0'){
             sb.deleteCharAt(0);
         }
-
+        //if the string is empty then, return 0
+        if(sb.isEmpty()){
+            return "0";
+        }
         return sb.toString();
     }
 }
