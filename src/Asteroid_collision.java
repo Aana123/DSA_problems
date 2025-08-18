@@ -14,27 +14,31 @@ public class Asteroid_collision {
         Stack<Integer> st = new Stack<>();
         int i = 0;
         while(i < asteroids.length) {
-            //Conditions to pop
-            if (!st.isEmpty() && st.peek() > 0 && asteroids[i] < 0 && st.peek() == Math.abs(asteroids[i])) {
+            //Conditions to pop [+,-]
+            //1. +ve == |-ve|
+            if (!st.isEmpty() && st.peek()>0 && asteroids[i]<0 && st.peek()==Math.abs(asteroids[i])) {
                 st.pop();
                 i++;
             }
+            //2. +ve < |-ve|
             while(i<asteroids.length && !st.isEmpty() && st.peek()>0 && asteroids[i]<0 && st.peek()<Math.abs(asteroids[i])) {
                 st.pop();
             }
+            //3. +ve > |-ve|
             if(i<asteroids.length && !st.isEmpty() && st.peek()>0 && asteroids[i]<0 && st.peek()>Math.abs(asteroids[i])){
                 i++;
             }
             //Conditions to push
+            //1. when stack is empty
+            //2. [+,+], [-,+], [-,-]
             if(i<asteroids.length){
                 if(st.isEmpty() || asteroids[i]>0){
                     st.push(asteroids[i]);
-                    i++;
                 }
                 else if(st.peek()<0 && asteroids[i]<0){
                     st.push(asteroids[i]);
-                    i++;
                 }
+                i++;
             }
         }
         int[] ans = new int[st.size()];
