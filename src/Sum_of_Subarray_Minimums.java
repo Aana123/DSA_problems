@@ -18,7 +18,7 @@ public class Sum_of_Subarray_Minimums {
 
         for (int i = 0; i <n ; i++) {
             //Pop elements from stack until element smaller than current ele is found
-            while(!st.isEmpty() && arr[st.peek()]>arr[i]){
+            while(!st.isEmpty() && arr[st.peek()] > arr[i]){
                 st.pop();
             }
             //If stack is empty, it means there is no smaller element on the left, so set it -1
@@ -35,7 +35,7 @@ public class Sum_of_Subarray_Minimums {
         //Clear the stack to reuse it in finding previous smaller elements
         st.clear();
 
-        for (int i = n-1; i >=0 ; i--) {
+        for (int i = n-1; i >= 0 ; i--) {
             //Removing the elements smaller than current element from the stack
             while(!st.isEmpty() && arr[st.peek()] >= arr[i]){
                 st.pop();
@@ -73,6 +73,8 @@ public class Sum_of_Subarray_Minimums {
         }
         return (int)sumOfMin;
     }
+    //make all possible sub-arrays of an element and calculate the sum of their
+    //minimums simultaneously
     public static int findSubArrayMin(int[] arr, int start){
         int minVal = arr[start];
         int result = 0;
@@ -93,14 +95,15 @@ public class Sum_of_Subarray_Minimums {
         long ans =  0;
         for (int i = 0; i < arr.length ; i++) {
             int min = arr[i];
-            for (int j = i+1; j < arr.length; j++) {
+            for (int j = i; j < arr.length; j++) {
                 min = Math.min(min,arr[j]);
                 ans += min;
             }
         }
-        for (int i = 0; i < arr.length; i++) {
-            ans += arr[i];
-        }
+        //can be avoided by starting the inner loop with j = i than j = i+1
+//        for (int i = 0; i < arr.length; i++) {
+//            ans += arr[i];
+//        }
         return (int)ans%MOD;
     }
 }
