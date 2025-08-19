@@ -11,11 +11,69 @@ public class Maximal_rectangle {
         };
         System.out.println(maximalRectangle(matrix));
     }
+    public static int maximalRectangle(char[][] matrix){
+        int r = matrix.length;
+        int c = matrix[0].length;
+        int row = 0; int ans = 0;
+        while(row<r){
+            ans = Math.max(largestRectangle(matrix,row),ans);
+            row++;
+            for(int col = 0; col < c; col++){
+                if(row<r && matrix[row][col]=='1'){
+                    matrix[row][col] += (char) (matrix[row-1][col] - '0');
+                }
+            }
+        }
+        System.out.println(Arrays.deepToString(matrix));
+        return ans;
+    }
+    public static int largestRectangle(char[][] matrix, int r) {
+        int n = matrix[0].length;
+        int[] left = new int[n]; //prev smaller
+        int[] right = new int[n]; //next smaller
+
+        Stack<Integer> st = new Stack<>();
+
+        for (int c = 0; c < n; c++) {
+            //>
+            while(!st.isEmpty() && matrix[r][st.peek()] - '0'> matrix[r][c] - '0'){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                left[c] = -1;
+            } else{
+                left[c] = st.peek();
+            }
+            st.push(c);
+        }
+
+        st.clear();
+
+        for (int c = n-1; c >=0; c--) {
+            //>=
+            while(!st.isEmpty() && matrix[r][st.peek()] - '0'>= matrix[r][c] - '0'){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                right[c] = n;
+            } else{
+                right[c] = st.peek();
+            }
+            st.push(c);
+        }
+
+        int ans = 0;
+        for (int c = 0; c < n; c++) {
+            ans = Math.max((right[c]-left[c]-1)* (matrix[r][c] - '0'),ans);
+        }
+        return ans;
+    }
+
 
     //Kinda brute force only as the number of iterations can easily be reduced
     //TC - O(M∗N)
     //SC - O(M∗N)
-    public static int maximalRectangle(char[][] matrix) {
+    public static int maximalRectangle1(char[][] matrix) {
         int r = matrix.length;
         int c = matrix[0].length;
         //Step - 1 Make a 2-D top matrix - it stores the indexes of the top smaller element xD ykr
@@ -62,8 +120,8 @@ public class Maximal_rectangle {
         Stack<Integer> st = new Stack<>();
 
         for (int i = 0; i < n; i++) {
-            //>=
-            while(!st.isEmpty() && heights[st.peek()]>=heights[i]){
+            //>= - not necessary
+            while(!st.isEmpty() && heights[st.peek()]>heights[i]){
                 st.pop();
             }
             if(st.isEmpty()){
