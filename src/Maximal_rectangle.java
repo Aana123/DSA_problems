@@ -11,6 +11,9 @@ public class Maximal_rectangle {
         };
         System.out.println(maximalRectangle(matrix));
     }
+
+    //TC - O(M*N)
+    //SC - O(M*N)
     public static int maximalRectangle(char[][] matrix){
         int r = matrix.length;
         int c = matrix[0].length;
