@@ -3,9 +3,10 @@ import java.util.HashMap;
 
 public class sort_array_by_frequency {
     public static void main(String[] args) {
-        int[] nums = {2,3,1,3,2};
+        int[] nums = {-1,1,-6,4,5,-6,1,4,1};
         System.out.println(Arrays.toString(frequencySort(nums)));
     }
+    //Try-1
     public static int[] frequencySort(int[] nums) {
         HashMap<Integer,Integer> hs = new HashMap<>();
         for(int i : nums) {
