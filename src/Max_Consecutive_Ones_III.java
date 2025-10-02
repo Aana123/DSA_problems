@@ -6,7 +6,7 @@ public class Max_Consecutive_Ones_III {
     }
     //Sliding window approach
     //TC - O(N)
-    //SC - O(N)
+    //SC - O(1)
     public static int longestOnes(int[] nums, int k) {
         int left = 0; int right = 0; int max = 0;
         while(right<nums.length){
