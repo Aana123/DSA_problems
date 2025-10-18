@@ -4,12 +4,12 @@ import java.util.Set;
 
 public class Longest_Nice_Subarray {
     public static void main(String[] args) {
-        int[] nums = {178830999,19325904,844110858,806734874,280746028,64,256,33554432,882197187,104359873,453049214,820924081,624788281,710612132,839991691};
+        int[] nums = {844110858,19325904,806734874};
         System.out.println(longestNiceSubarray(nums));
     }
 
     //Sliding window
-    //TC -O(N^2)
+    //TC - O(N^2)
     //SC - O(N)
     public static int longestNiceSubarray(int[] nums) {
         int left = 0, right = 0, max = 0;
@@ -26,7 +26,7 @@ public class Longest_Nice_Subarray {
                             left++; i = 0;
                         }
                         hs.remove(i);
-                        left++; i = -1;
+                        left++; i = - 1; //Very IMP
                     }
                 }
                 hs.add(nums[right]);
