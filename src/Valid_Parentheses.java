@@ -17,7 +17,7 @@ public class Valid_Parentheses {
             } else if(s.charAt(i)=='[') {
                 st.push(']');
             }
-            //poori string ko traverse karne se pehle he empty ho jaay ya top of the stack
+            //Poori string ko traverse karne se pehle he empty ho jaay ya top of the stack
             // char(i) se match na kare toh false
             else if(st.isEmpty() || st.pop()!=s.charAt(i)) {
                 return false;
