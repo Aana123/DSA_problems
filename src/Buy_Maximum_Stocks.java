@@ -6,7 +6,7 @@ public class Buy_Maximum_Stocks {
         System.out.println(buyMaximumProducts(price.length,10,price));
     }
     //2d array sorting
-    //TC - O(Nlogn)
+    //TC - O(Nlog*n)
     //SC - O(N)
     public static int buyMaximumProducts(int n, int k, int[] price) {
         int[][] ans = new int[n][2];
