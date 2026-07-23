@@ -3,34 +3,34 @@ import java.util.*;
 public class Sliding_Window_Maximum {
     public static void main(String[] args) {
         int[] arr = {2,5,1,3,8};
-        System.out.println(Arrays.toString(maxSlidingWindow(arr,2)));
+        //System.out.println(Arrays.toString(maxSlidingWindow(arr,2)));
     }
 
     //Optimal approach - using Deque
-    public static int[] maxSlidingWindow(int[] nums, int k) {
-        int n = nums.length;
-        int ans[] = new int[n-k+1];
-        //n-k+1 is the number of sub-arrays that can be made from the given array having a fixed size of k
-        Deque<Integer> dq = new LinkedList<>();  // store index values
-        int idx = 0;
-        //n length tak jaenge as i represents the right end of the window not the left unlike brute force
-        for(int i=0;i<n;i++) {
-            //Checking if the current max element in the dequeue is out of the current window parameter
-            if(!dq.isEmpty() && dq.peekFirst() == i-k) {
-                dq.removeFirst();
-            }
-            //Making a decreasing deque - previous greater element
-            while(!dq.isEmpty() && nums[dq.peekLast()] <= nums[i]) {
-                dq.removeLast();
-            }
-            dq.addLast(i);
-            //If all the elements of the current window have been traversed, update it's max in ans[]
-            if(i >= k-1) {
-                ans[idx++] = nums[dq.peekFirst()];
-            }
-        }
-        return ans;
-    }
+//    public static int[] maxSlidingWindow(int[] nums, int k) {
+//        int n = nums.length;
+//        int ans[] = new int[n-k+1];
+//        //n-k+1 is the number of sub-arrays that can be made from the given array having a fixed size of k
+//        Deque<Integer> dq = new LinkedList<>();  // store index values
+//        int idx = 0;
+//        //n length tak jaenge as i represents the right end of the window not the left unlike brute force
+//        for(int i=0;i<n;i++) {
+//            //Checking if the current max element in the dequeue is out of the current window parameter
+//            if(!dq.isEmpty() && dq.peekFirst() == i-k) {
+//                dq.removeFirst();
+//            }
+//            //Making a decreasing deque - previous greater element
+//            while(!dq.isEmpty() && nums[dq.peekLast()] <= nums[i]) {
+//                dq.removeLast();
+//            }
+//            dq.addLast(i);
+//            //If all the elements of the current window have been traversed, update it's max in ans[]
+//            if(i >= k-1) {
+//                ans[idx++] = nums[dq.peekFirst()];
+//            }
+//        }
+//        return ans;
+//    }
 
 
 
